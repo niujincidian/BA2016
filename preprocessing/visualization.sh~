@@ -1,0 +1,2 @@
+python $CAFFE_ROOT/python/draw_net.py ~/Documents/BA2016/models/01.SigmoidCrossEntropy/03/train_val.prototxt ~/Documents/BA2016/models/01.SigmoidCrossEntropy/03/SCE.png --rankdir LR
+
