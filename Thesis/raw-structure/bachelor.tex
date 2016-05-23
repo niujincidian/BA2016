@@ -1,0 +1,72 @@
+\documentclass[11pt,a4paper]{article}
+
+%packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+%opening
+\title{Deep Neural Networks for Sound Type Classification}
+\author{Xiaowei Jiang}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	Here is Abstract
+\end{abstract}
+
+\tableofcontents
+
+
+\section{Introduction}
+explain structure of this thesis\\
+In Chapter 1...\\
+In Chapter 2...\\
+
+\section{Background and Motivation}
+\subsection{Two-ears System}
+brief introduction to two-ears system
+\subsection{Sound Type Classification}
+\subsubsection{Introduction}
+Input features \\
+Task\\
+\subsubsection{Related works}
+Lasso, SVMs classification results\\
+Motivation for DNN
+\subsection{Convolutional Neural Network Architectures in Sound Type Classification}
+explain some basic concepts of CNN
+\subsection{Toolbox:Caffe}
+
+\section{Three Types of CNN Architecture in Sound Type Classification(LossFunctions)}
+\subsection{One-Against-All}
+def.,motivation,result
+\subsection{SoftmaxWithLoss}
+def.,motivation,result
+\subsection{SigmoidCrossEntropy}
+def.,motivation,result
+introduction to loss function in CNN
+
+\section{Data Augumentation}
+\subsection{Overview and Motivation}
+definition of data augumentation\\
+related works(try different parameters)
+\subsection{Implementation}
+\subsection{Results}
+
+\section{Dropout Layer}
+
+\section{Optimization Methods}
+Discuss about different solver types(SGD,Adam,Adadelta,) related works
+\subsection{"SGD"(Stochastic Gradient Descent)}
+\subsection{"AdaGrad"(Adaptive Gradient)}
+\subsection{"Adam"(Adaptive Moment Estimation)}
+\subsection{"AdaDelta"}
+\subsection{"NAG"(Nesterov’s accelerated gradient)}
+\subsection{"RMSprop"}
+
+\section{Conclusion}
+
+\appendix
+
+\end{document}

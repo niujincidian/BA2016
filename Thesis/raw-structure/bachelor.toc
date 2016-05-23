@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}Background and Motivation}{2}
+\contentsline {subsection}{\numberline {2.1}Two-ears System}{2}
+\contentsline {subsection}{\numberline {2.2}Sound Type Classification}{2}
+\contentsline {subsubsection}{\numberline {2.2.1}Introduction}{2}
+\contentsline {subsubsection}{\numberline {2.2.2}Related works}{2}
+\contentsline {subsection}{\numberline {2.3}Convolutional Neural Network Architectures in Sound Type Classification}{2}
+\contentsline {subsection}{\numberline {2.4}Toolbox:Caffe}{2}
+\contentsline {section}{\numberline {3}Three Types of CNN Architecture in Sound Type Classification(LossFunctions)}{2}
+\contentsline {subsection}{\numberline {3.1}One-Against-All}{2}
+\contentsline {subsection}{\numberline {3.2}SoftmaxWithLoss}{3}
+\contentsline {subsection}{\numberline {3.3}SigmoidCrossEntropy}{3}
+\contentsline {section}{\numberline {4}Data Augumentation}{3}
+\contentsline {subsection}{\numberline {4.1}Overview and Motivation}{3}
+\contentsline {subsection}{\numberline {4.2}Implementation}{3}
+\contentsline {subsection}{\numberline {4.3}Results}{3}
+\contentsline {section}{\numberline {5}Dropout Layer}{3}
+\contentsline {section}{\numberline {6}Optimization Methods}{3}
+\contentsline {subsection}{\numberline {6.1}"SGD"(Stochastic Gradient Descent)}{3}
+\contentsline {subsection}{\numberline {6.2}"AdaGrad"(Adaptive Gradient)}{3}
+\contentsline {subsection}{\numberline {6.3}"Adam"(Adaptive Moment Estimation)}{3}
+\contentsline {subsection}{\numberline {6.4}"AdaDelta"}{3}
+\contentsline {subsection}{\numberline {6.5}"NAG"(Nesterov’s accelerated gradient)}{3}
+\contentsline {subsection}{\numberline {6.6}"RMSprop"}{3}
+\contentsline {section}{\numberline {7}Conclusion}{3}
