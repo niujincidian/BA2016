@@ -1,0 +1,2 @@
+/media/jiang/lernen/Bachelorarbeit/data/split/twoears_data_train_000.h5
+

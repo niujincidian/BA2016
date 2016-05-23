@@ -1,0 +1,3 @@
+/mnt/scratch/cindy/data/split/twoears_data_test_000.h5
+/mnt/scratch/cindy/data/split/twoears_data_test_001.h5
+

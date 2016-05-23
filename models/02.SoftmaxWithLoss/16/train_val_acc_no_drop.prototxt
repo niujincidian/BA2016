@@ -1,0 +1,684 @@
+name: "SoundNet"
+layer {
+  name: "data"
+  type: "HDF5Data"
+  top: "amsFeatures"
+  top: "ratemap"
+  top: "label"
+  include {
+    phase: TRAIN
+  }
+  hdf5_data_param {
+    source: "/mnt/antares_raid/home/cindy/merope/experiments/twoears_data_train.txt"
+    batch_size: 128
+  }
+}
+layer {
+  name: "data"
+  type: "HDF5Data"
+  top: "amsFeatures"
+  top: "ratemap"
+  top: "label"
+  include {
+    phase: TEST
+  }
+  hdf5_data_param {
+    source: "/mnt/antares_raid/home/cindy/merope/experiments/twoears_data_test.txt"
+    batch_size: 128
+  }
+}
+layer {
+  name: "conv1_a"
+  type: "Convolution"
+  bottom: "amsFeatures"
+  top: "conv1_a"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    kernel_h: 8
+    kernel_w: 6
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "relu1_a"
+  type: "ReLU"
+  bottom: "conv1_a"
+  top: "conv1_a"
+}
+layer {
+  name: "conv2_a"
+  type: "Convolution"
+  bottom: "conv1_a"
+  top: "conv2_a"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    kernel_h: 3
+    kernel_w: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "pool2_a"
+  type: "Pooling"
+  bottom: "conv2_a"
+  top: "pool2_a"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "relu2_a"
+  type: "ReLU"
+  bottom: "pool2_a"
+  top: "pool2_a"
+}
+layer {
+  name: "ip2_a"
+  type: "InnerProduct"
+  bottom: "pool2_a"
+  top: "ip2_a"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 256
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "conv1_r"
+  type: "Convolution"
+  bottom: "ratemap"
+  top: "conv1_r"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    kernel_h: 8
+    kernel_w: 6
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "relu1_r"
+  type: "ReLU"
+  bottom: "conv1_r"
+  top: "conv1_r"
+}
+layer {
+  name: "conv2_r"
+  type: "Convolution"
+  bottom: "conv1_r"
+  top: "conv2_r"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    kernel_h: 3
+    kernel_w: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "pool2_r"
+  type: "Pooling"
+  bottom: "conv2_r"
+  top: "pool2_r"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "relu2_r"
+  type: "ReLU"
+  bottom: "pool2_r"
+  top: "pool2_r"
+}
+layer {
+  name: "ip2_r"
+  type: "InnerProduct"
+  bottom: "pool2_r"
+  top: "ip2_r"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 256
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "concat_ar"
+  type: "Concat"
+  bottom: "ip2_a"
+  bottom: "ip2_r"
+  top: "ip2"
+  concat_param {
+    axis: 1
+  }
+}
+layer {
+  name: "relu2"
+  type: "ReLU"
+  bottom: "ip2"
+  top: "ip2"
+}
+layer {
+  name: "label_split"
+  type: "Slice"
+  bottom: "label" # name of binary input 10-vector
+  top: "label01"
+  top: "label02"
+  top: "label03"
+  top: "label04"
+  top: "label05"
+  top: "label06"
+  top: "label07"
+  top: "label08"  
+  top: "label09"
+  top: "label10"
+  top: "label11"
+  slice_param {
+    axis: 2
+    slice_point: 1
+    slice_point: 2
+    slice_point: 3
+    slice_point: 4
+    slice_point: 5
+    slice_point: 6
+    slice_point: 7
+    slice_point: 8
+    slice_point: 9
+    slice_point: 10
+  }
+}
+layer {
+  name: "predict01"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "predict01"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 2 # because you need to predict 2 probabilities one for False, one for True
+     weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss01"
+  type: "SoftmaxWithLoss"
+  bottom: "predict01"
+  bottom: "label01"
+  top: "loss01"
+}
+layer {
+  name: "acc01"
+  type: "Accuracy"
+  bottom: "predict01"
+  bottom: "label01"
+  top: "acc01"
+  include {
+      phase: TEST
+  }
+}
+layer {
+  name: "predict02"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "predict02"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 2 # because you need to predict 2 probabilities one for False, one for True
+     weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss02"
+  type: "SoftmaxWithLoss"
+  bottom: "predict02"
+  bottom: "label02"
+  top: "loss02"
+}
+layer {
+  name: "acc02"
+  type: "Accuracy"
+  bottom: "predict02"
+  bottom: "label02"
+  top: "acc02"
+  include {
+      phase: TEST
+  }
+}
+layer {
+  name: "predict03"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "predict03"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 2 # because you need to predict 2 probabilities one for False, one for True
+     weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss03"
+  type: "SoftmaxWithLoss"
+  bottom: "predict03"
+  bottom: "label03"
+  top: "loss03"
+}
+layer {
+  name: "acc03"
+  type: "Accuracy"
+  bottom: "predict03"
+  bottom: "label03"
+  top: "acc03"
+  include {
+      phase: TEST
+  }
+}
+layer {
+  name: "predict04"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "predict04"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 2 # because you need to predict 2 probabilities one for False, one for True
+     weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss04"
+  type: "SoftmaxWithLoss"
+  bottom: "predict04"
+  bottom: "label04"
+  top: "loss04"
+}
+layer {
+  name: "acc04"
+  type: "Accuracy"
+  bottom: "predict04"
+  bottom: "label04"
+  top: "acc04"
+  include {
+      phase: TEST
+  }
+}
+layer {
+  name: "predict05"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "predict05"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 2 # because you need to predict 2 probabilities one for False, one for True
+     weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss05"
+  type: "SoftmaxWithLoss"
+  bottom: "predict05"
+  bottom: "label05"
+  top: "loss05"
+}
+layer {
+  name: "acc05"
+  type: "Accuracy"
+  bottom: "predict05"
+  bottom: "label05"
+  top: "acc05"
+  include {
+      phase: TEST
+  }
+}
+layer {
+  name: "predict06"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "predict06"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 2 # because you need to predict 2 probabilities one for False, one for True
+     weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss06"
+  type: "SoftmaxWithLoss"
+  bottom: "predict06"
+  bottom: "label06"
+  top: "loss06"
+}
+layer {
+  name: "acc06"
+  type: "Accuracy"
+  bottom: "predict06"
+  bottom: "label06"
+  top: "acc06"
+  include {
+      phase: TEST
+  }
+}
+layer {
+  name: "predict07"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "predict07"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 2 # because you need to predict 2 probabilities one for False, one for True
+     weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss07"
+  type: "SoftmaxWithLoss"
+  bottom: "predict07"
+  bottom: "label07"
+  top: "loss07"
+}
+layer {
+  name: "acc07"
+  type: "Accuracy"
+  bottom: "predict07"
+  bottom: "label07"
+  top: "acc07"
+  include {
+      phase: TEST
+  }
+}
+layer {
+  name: "predict08"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "predict08"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 2 # because you need to predict 2 probabilities one for False, one for True
+     weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss08"
+  type: "SoftmaxWithLoss"
+  bottom: "predict08"
+  bottom: "label08"
+  top: "loss08"
+}
+layer {
+  name: "acc08"
+  type: "Accuracy"
+  bottom: "predict08"
+  bottom: "label08"
+  top: "acc08"
+  include {
+      phase: TEST
+  }
+}
+layer {
+  name: "predict09"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "predict09"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 2 # because you need to predict 2 probabilities one for False, one for True
+     weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss09"
+  type: "SoftmaxWithLoss"
+  bottom: "predict09"
+  bottom: "label09"
+  top: "loss09"
+}
+layer {
+  name: "acc09"
+  type: "Accuracy"
+  bottom: "predict09"
+  bottom: "label09"
+  top: "acc09"
+  include {
+      phase: TEST
+  }
+}
+layer {
+  name: "predict10"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "predict10"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 2 # because you need to predict 2 probabilities one for False, one for True
+     weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss10"
+  type: "SoftmaxWithLoss"
+  bottom: "predict10"
+  bottom: "label10"
+  top: "loss10"
+}
+layer {
+  name: "acc10"
+  type: "Accuracy"
+  bottom: "predict10"
+  bottom: "label10"
+  top: "acc10"
+  include {
+      phase: TEST
+  }
+}
+layer {
+  name: "predict11"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "predict11"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 2 # because you need to predict 2 probabilities one for False, one for True
+     weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss11"
+  type: "SoftmaxWithLoss"
+  bottom: "predict11"
+  bottom: "label11"
+  top: "loss11"
+}
+layer {
+  name: "acc11"
+  type: "Accuracy"
+  bottom: "predict11"
+  bottom: "label11"
+  top: "acc11"
+  include {
+      phase: TEST
+  }
+}

@@ -1,0 +1,21 @@
+Log file created at: 2016/04/07 19:03:06
+Running on machine: jiang-ThinkPad-T440
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0407 19:03:06.767665  3629 caffe.cpp:178] Use CPU.
+I0407 19:03:06.777710  3629 solver.cpp:48] Initializing solver from parameters: 
+test_iter: 184
+test_interval: 327
+base_lr: 0.0001
+display: 100
+max_iter: 100000
+lr_policy: "step"
+gamma: 0.1
+momentum: 0.99
+weight_decay: 0.0005
+stepsize: 30000
+snapshot: 100000
+snapshot_prefix: "/media/jiang/lernen/Bachelorarbeit/modelfiles/04/te"
+solver_mode: CPU
+net: "/home/jiang/Documents/BA2016/models/04/local/train_val_local.prototxt"
+snapshot_after_train: true
+F0407 19:03:06.778009  3629 solver.cpp:438] Cannot write to snapshot prefix '/media/jiang/lernen/Bachelorarbeit/modelfiles/04/te'.  Make sure that the directory exists and is writeable.

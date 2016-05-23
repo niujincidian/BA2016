@@ -1,0 +1,4 @@
+1.solver_type:
+Nesterov’s accelerated gradient (type: "Nesterov") 
+2.use accuracy layer
+

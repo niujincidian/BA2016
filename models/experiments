@@ -1,0 +1,129 @@
+Don't use merope in following timeslots
+* Tue 8-14h
+* Thu 14-20h
+
+-------------------------------
+--------Archetecture 1:--------
+-------------------------------
+LossFunction:
+SigmoidCrossEntropyLoss
+Accuracy-calculation:
+False
+~~~~~~~~~~~~~~~~~~~
+Different solver types
+~~~~~~~~~~~~~~~~~~~
+###############################
+Exp03: 	SigmoidCrossEntropyLoss
+	SGD(default)
+	with dropout
+	Info:merope(fertig)
+###############################
+Exp04: Nestrov
+	Info:adhara(fertig)
+Exp05: Adam
+	Info:sabik(fertig)
+Exp06: RMSProp(rms_decay:0.02 default value)
+--------!a mistake, here should be a fixed learning rate, since this method dynamically adjust the learning rate
+	Info:adhara(fertig)
+Exp07: AdaGrad(set 'momenteum' to 0!)
+	Info:adhara(fertig)
+Exp09: AdaDelta(very slow!!)(learning_policy:'fixed',lr:1,delta:1e-6)
+	Info:sabik(fertig)
+-------------------------------
+--------Architecture 2:--------
+-------------------------------
+LossFunction:
+SofmaxWithLoss
+Accuracy-calculation:
+True(specified by different classes)
+with slicing
+~~~~~~~~~~~~~~~~~~~
+Different solver types
+~~~~~~~~~~~~~~~~~~~
+Exp08: SGD(default)
+	Info:merope(fertig)
+Exp10: Adam(set two momentums)
+	Info:adhara(fertig)
+Exp11: AdaGrad(fixed learning rate, adaptive learning rate):
+	Info:merope(--killed at 66000)
+Exp12: Nesterov(params same as SGD):
+	Info:sabik(fertig)
+Exp13: RMSProp(rms_decay:0.02 default value)
+	Info:adhara(fertig)
+Exp14: AdaDelta(delta:0.9,fixed lr_policy,base_lr:1.0)
+	Info:sabik(--in progress)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~Architecture 3:~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##################################
+Expmodel_grouptalk_1:
+	(SGD)SoftmaxWithLoss
+	with slicing
+	with dropout layer
+	Info:adhara(fertig)
+	(plotted)
+Exp15: (SGD)SoftmaxWithLoss
+	without slicing
+	with dropout layer
+	Info:adhara(fertig)
+Exp16: (SGD)SoftmaxWithLoss
+	with slicing
+	without dropout layercindy
+	Info:merope(fertig)
+	(plotted)
+Exp17: (SGD)SoftmaxWithLoss
+	without slicing
+	without dropout layer
+	Info:adhara(fertig)
+###################################
+Exp18: (SGD)SigmoidCrossEntropyLoss
+	without dropout
+	Info:adhara(--in progress)
+###################################
+Exp19: (SGD)InfogainLoss
+	with slicing
+	with dropout
+	Info:sabik(fertig)
+Exp20: (SGD)SigmoidCrossEntropy
+ 	don't use amsFeature, only use ratemap
+	with dropout
+	Info:sabik(fertig)
+======================================
+pythonLayer test:
+Exp21: <SGD>SigmoidCrossEntropy
+ 	use pythonlayer jitterlayer
+	shift over time domain
+	Info:adhara(fertig)
+Exp24: SigmoidCrossEntropy:
+	without dropoutlayer
+	shift over (T,F)([-30,30],[-8,8])
+	Info:adhara(fertig)
+Exp22: SigmoidCrossEntropy
+	use pythonlayer jitterlayer
+	shift over (T,F)([-30,30],[-8,8])
+	Info:adhara(fertig)
+========================================
+	try different shift parameters
+----------------------------------------
+Exp s0(Exp22):shift over 
+	T:[-30,30]
+	F:[-8,8]
+	Info:adhara(fertig)
+Exp s1:	shift over
+	T:[-15,15]
+	F:[-4,4]
+	Info:sabik(--in progress)
+Exp s2: shift over
+	T:[-40,40]
+	F:[-8,8]
+	Info:merope(--in progress)
+======================================
+Solvers:
+Exp23: <Adam>SCE
+	shift over (T,F)([-30,30],[-8,8])
+	Info:adhara(--in progress)
+Exp25: <AdaDelta>SCE
+	shift over (T,F)([-30,30],[-8,8])
+	Info:
+Exp26: <Nesterov>
+	

@@ -1,0 +1,2 @@
+python $CAFFE_ROOT/python/draw_net.py ~/Documents/BA2016/models/02.SoftmaxWithLoss/models_grouptalk/train_val.prototxt ~/Documents/BA2016/models/02.SoftmaxWithLoss/models_grouptalk/Softmax.png --rankdir TB
+

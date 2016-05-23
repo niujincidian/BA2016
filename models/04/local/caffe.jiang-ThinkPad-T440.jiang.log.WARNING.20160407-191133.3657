@@ -1,0 +1,4 @@
+Log file created at: 2016/04/07 19:11:33
+Running on machine: jiang-ThinkPad-T440
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+F0407 19:11:33.647224  3657 syncedmem.hpp:25] Check failed: *ptr host allocation of size 3628800000 failed

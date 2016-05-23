@@ -1,0 +1,3 @@
+1.train_val.prototxt:SigmoidCrossentropy as loss function
+2.train_val_acc.prototxt:SoftmaxWithLoss with slicing
+3.train_val_no_slice.prototxt:SoftmaxWithLoss without slicing

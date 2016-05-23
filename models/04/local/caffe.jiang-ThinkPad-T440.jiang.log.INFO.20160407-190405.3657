@@ -1,0 +1,731 @@
+Log file created at: 2016/04/07 19:04:05
+Running on machine: jiang-ThinkPad-T440
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0407 19:04:05.404361  3657 caffe.cpp:178] Use CPU.
+I0407 19:04:05.404963  3657 solver.cpp:48] Initializing solver from parameters: 
+test_iter: 184
+test_interval: 327
+base_lr: 0.0001
+display: 100
+max_iter: 100000
+lr_policy: "step"
+gamma: 0.1
+momentum: 0.99
+weight_decay: 0.0005
+stepsize: 30000
+snapshot: 100000
+snapshot_prefix: "/media/jiang/lernen/Bachelorarbeit/modelfiles/04/te"
+solver_mode: CPU
+net: "/home/jiang/Documents/BA2016/models/04/local/train_val_local.prototxt"
+snapshot_after_train: true
+I0407 19:04:05.407435  3657 solver.cpp:91] Creating training net from net file: /home/jiang/Documents/BA2016/models/04/local/train_val_local.prototxt
+I0407 19:04:05.438829  3657 net.cpp:313] The NetState phase (0) differed from the phase (1) specified by a rule in layer data
+I0407 19:04:05.439023  3657 net.cpp:313] The NetState phase (0) differed from the phase (1) specified by a rule in layer accuracy
+I0407 19:04:05.439517  3657 net.cpp:49] Initializing net from parameters: 
+name: "SoundNet"
+state {
+  phase: TRAIN
+}
+layer {
+  name: "data"
+  type: "HDF5Data"
+  top: "amsFeatures"
+  top: "ratemap"
+  top: "label"
+  include {
+    phase: TRAIN
+  }
+  hdf5_data_param {
+    source: "/home/jiang/Documents/BA2016/models/04/local/twoears_data_train_local.txt"
+    batch_size: 128
+  }
+}
+layer {
+  name: "conv1_a"
+  type: "Convolution"
+  bottom: "amsFeatures"
+  top: "conv1_a"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+    kernel_h: 8
+    kernel_w: 6
+  }
+}
+layer {
+  name: "relu1_a"
+  type: "ReLU"
+  bottom: "conv1_a"
+  top: "conv1_a"
+}
+layer {
+  name: "conv2_a"
+  type: "Convolution"
+  bottom: "conv1_a"
+  top: "conv2_a"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+    kernel_h: 3
+    kernel_w: 3
+  }
+}
+layer {
+  name: "pool2_a"
+  type: "Pooling"
+  bottom: "conv2_a"
+  top: "pool2_a"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "relu2_a"
+  type: "ReLU"
+  bottom: "pool2_a"
+  top: "pool2_a"
+}
+layer {
+  name: "ip2_a"
+  type: "InnerProduct"
+  bottom: "pool2_a"
+  top: "ip2_a"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 256
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "conv1_r"
+  type: "Convolution"
+  bottom: "ratemap"
+  top: "conv1_r"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+    kernel_h: 8
+    kernel_w: 6
+  }
+}
+layer {
+  name: "relu1_r"
+  type: "ReLU"
+  bottom: "conv1_r"
+  top: "conv1_r"
+}
+layer {
+  name: "conv2_r"
+  type: "Convolution"
+  bottom: "conv1_r"
+  top: "conv2_r"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+    kernel_h: 3
+    kernel_w: 3
+  }
+}
+layer {
+  name: "pool2_r"
+  type: "Pooling"
+  bottom: "conv2_r"
+  top: "pool2_r"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "relu2_r"
+  type: "ReLU"
+  bottom: "pool2_r"
+  top: "pool2_r"
+}
+layer {
+  name: "ip2_r"
+  type: "InnerProduct"
+  bottom: "pool2_r"
+  top: "ip2_r"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 256
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "concat_ar"
+  type: "Concat"
+  bottom: "ip2_a"
+  bottom: "ip2_r"
+  top: "ip2"
+  concat_param {
+    axis: 1
+  }
+}
+layer {
+  name: "relu2"
+  type: "ReLU"
+  bottom: "ip2"
+  top: "ip2"
+}
+layer {
+  name: "dropip2"
+  type: "Dropout"
+  bottom: "ip2"
+  top: "ip2"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layer {
+  name: "ip3"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "ip3"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 11
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "loss"
+  type: "SigmoidCrossEntropyLoss"
+  bottom: "ip3"
+  bottom: "label"
+  top: "loss"
+}
+I0407 19:04:05.442397  3657 layer_factory.hpp:77] Creating layer data
+I0407 19:04:05.449815  3657 net.cpp:91] Creating Layer data
+I0407 19:04:05.449849  3657 net.cpp:399] data -> amsFeatures
+I0407 19:04:05.449904  3657 net.cpp:399] data -> ratemap
+I0407 19:04:05.449940  3657 net.cpp:399] data -> label
+I0407 19:04:05.449962  3657 hdf5_data_layer.cpp:79] Loading list of HDF5 filenames from: /home/jiang/Documents/BA2016/models/04/local/twoears_data_train_local.txt
+I0407 19:04:05.450044  3657 hdf5_data_layer.cpp:93] Number of HDF5 files: 1
+I0407 19:04:05.525787  3657 hdf5.cpp:32] Datatype class: H5T_FLOAT
+I0407 19:11:32.031677  3657 net.cpp:141] Setting up data
+I0407 19:11:32.182909  3657 net.cpp:148] Top shape: 128 9 16 63 (1161216)
+I0407 19:11:32.182958  3657 net.cpp:148] Top shape: 128 1 16 63 (129024)
+I0407 19:11:32.182974  3657 net.cpp:148] Top shape: 128 1 11 1 (1408)
+I0407 19:11:32.182986  3657 net.cpp:156] Memory required for data: 5166592
+I0407 19:11:32.474226  3657 layer_factory.hpp:77] Creating layer conv1_a
+I0407 19:11:32.504997  3657 net.cpp:91] Creating Layer conv1_a
+I0407 19:11:32.505026  3657 net.cpp:425] conv1_a <- amsFeatures
+I0407 19:11:32.557252  3657 net.cpp:399] conv1_a -> conv1_a
+I0407 19:11:32.588676  3657 net.cpp:141] Setting up conv1_a
+I0407 19:11:32.588699  3657 net.cpp:148] Top shape: 128 128 9 58 (8552448)
+I0407 19:11:32.588703  3657 net.cpp:156] Memory required for data: 39376384
+I0407 19:11:32.632575  3657 layer_factory.hpp:77] Creating layer relu1_a
+I0407 19:11:32.635033  3657 net.cpp:91] Creating Layer relu1_a
+I0407 19:11:32.635058  3657 net.cpp:425] relu1_a <- conv1_a
+I0407 19:11:32.635071  3657 net.cpp:386] relu1_a -> conv1_a (in-place)
+I0407 19:11:32.635329  3657 net.cpp:141] Setting up relu1_a
+I0407 19:11:32.635347  3657 net.cpp:148] Top shape: 128 128 9 58 (8552448)
+I0407 19:11:32.635351  3657 net.cpp:156] Memory required for data: 73586176
+I0407 19:11:32.635356  3657 layer_factory.hpp:77] Creating layer conv2_a
+I0407 19:11:32.635375  3657 net.cpp:91] Creating Layer conv2_a
+I0407 19:11:32.635378  3657 net.cpp:425] conv2_a <- conv1_a
+I0407 19:11:32.635386  3657 net.cpp:399] conv2_a -> conv2_a
+I0407 19:11:32.637001  3657 net.cpp:141] Setting up conv2_a
+I0407 19:11:32.637007  3657 net.cpp:148] Top shape: 128 128 7 56 (6422528)
+I0407 19:11:32.637009  3657 net.cpp:156] Memory required for data: 99276288
+I0407 19:11:32.637207  3657 layer_factory.hpp:77] Creating layer pool2_a
+I0407 19:11:32.637222  3657 net.cpp:91] Creating Layer pool2_a
+I0407 19:11:32.637224  3657 net.cpp:425] pool2_a <- conv2_a
+I0407 19:11:32.637229  3657 net.cpp:399] pool2_a -> pool2_a
+I0407 19:11:32.764618  3657 net.cpp:141] Setting up pool2_a
+I0407 19:11:32.764645  3657 net.cpp:148] Top shape: 128 128 4 28 (1835008)
+I0407 19:11:32.764648  3657 net.cpp:156] Memory required for data: 106616320
+I0407 19:11:32.764654  3657 layer_factory.hpp:77] Creating layer relu2_a
+I0407 19:11:32.764667  3657 net.cpp:91] Creating Layer relu2_a
+I0407 19:11:32.764672  3657 net.cpp:425] relu2_a <- pool2_a
+I0407 19:11:32.764686  3657 net.cpp:386] relu2_a -> pool2_a (in-place)
+I0407 19:11:32.764698  3657 net.cpp:141] Setting up relu2_a
+I0407 19:11:32.764704  3657 net.cpp:148] Top shape: 128 128 4 28 (1835008)
+I0407 19:11:32.764708  3657 net.cpp:156] Memory required for data: 113956352
+I0407 19:11:32.764710  3657 layer_factory.hpp:77] Creating layer ip2_a
+I0407 19:11:32.765409  3657 net.cpp:91] Creating Layer ip2_a
+I0407 19:11:32.765434  3657 net.cpp:425] ip2_a <- pool2_a
+I0407 19:11:32.765458  3657 net.cpp:399] ip2_a -> ip2_a
+I0407 19:11:32.812283  3657 net.cpp:141] Setting up ip2_a
+I0407 19:11:32.812304  3657 net.cpp:148] Top shape: 128 256 (32768)
+I0407 19:11:32.812307  3657 net.cpp:156] Memory required for data: 114087424
+I0407 19:11:32.812325  3657 layer_factory.hpp:77] Creating layer conv1_r
+I0407 19:11:32.820911  3657 net.cpp:91] Creating Layer conv1_r
+I0407 19:11:32.820927  3657 net.cpp:425] conv1_r <- ratemap
+I0407 19:11:32.820943  3657 net.cpp:399] conv1_r -> conv1_r
+I0407 19:11:32.821048  3657 net.cpp:141] Setting up conv1_r
+I0407 19:11:32.821056  3657 net.cpp:148] Top shape: 128 128 9 58 (8552448)
+I0407 19:11:32.821059  3657 net.cpp:156] Memory required for data: 148297216
+I0407 19:11:32.821069  3657 layer_factory.hpp:77] Creating layer relu1_r
+I0407 19:11:32.821079  3657 net.cpp:91] Creating Layer relu1_r
+I0407 19:11:32.821084  3657 net.cpp:425] relu1_r <- conv1_r
+I0407 19:11:32.821090  3657 net.cpp:386] relu1_r -> conv1_r (in-place)
+I0407 19:11:32.821099  3657 net.cpp:141] Setting up relu1_r
+I0407 19:11:32.821104  3657 net.cpp:148] Top shape: 128 128 9 58 (8552448)
+I0407 19:11:32.821106  3657 net.cpp:156] Memory required for data: 182507008
+I0407 19:11:32.821110  3657 layer_factory.hpp:77] Creating layer conv2_r
+I0407 19:11:32.822379  3657 net.cpp:91] Creating Layer conv2_r
+I0407 19:11:32.822393  3657 net.cpp:425] conv2_r <- conv1_r
+I0407 19:11:32.822403  3657 net.cpp:399] conv2_r -> conv2_r
+I0407 19:11:32.823995  3657 net.cpp:141] Setting up conv2_r
+I0407 19:11:32.824002  3657 net.cpp:148] Top shape: 128 128 7 56 (6422528)
+I0407 19:11:32.824003  3657 net.cpp:156] Memory required for data: 208197120
+I0407 19:11:32.824012  3657 layer_factory.hpp:77] Creating layer pool2_r
+I0407 19:11:32.824018  3657 net.cpp:91] Creating Layer pool2_r
+I0407 19:11:32.824020  3657 net.cpp:425] pool2_r <- conv2_r
+I0407 19:11:32.824025  3657 net.cpp:399] pool2_r -> pool2_r
+I0407 19:11:32.824033  3657 net.cpp:141] Setting up pool2_r
+I0407 19:11:32.824035  3657 net.cpp:148] Top shape: 128 128 4 28 (1835008)
+I0407 19:11:32.824038  3657 net.cpp:156] Memory required for data: 215537152
+I0407 19:11:32.824039  3657 layer_factory.hpp:77] Creating layer relu2_r
+I0407 19:11:32.824043  3657 net.cpp:91] Creating Layer relu2_r
+I0407 19:11:32.824045  3657 net.cpp:425] relu2_r <- pool2_r
+I0407 19:11:32.824048  3657 net.cpp:386] relu2_r -> pool2_r (in-place)
+I0407 19:11:32.824053  3657 net.cpp:141] Setting up relu2_r
+I0407 19:11:32.824055  3657 net.cpp:148] Top shape: 128 128 4 28 (1835008)
+I0407 19:11:32.824057  3657 net.cpp:156] Memory required for data: 222877184
+I0407 19:11:32.825790  3657 layer_factory.hpp:77] Creating layer ip2_r
+I0407 19:11:32.825832  3657 net.cpp:91] Creating Layer ip2_r
+I0407 19:11:32.825839  3657 net.cpp:425] ip2_r <- pool2_r
+I0407 19:11:32.825850  3657 net.cpp:399] ip2_r -> ip2_r
+I0407 19:11:32.908817  3657 net.cpp:141] Setting up ip2_r
+I0407 19:11:32.908839  3657 net.cpp:148] Top shape: 128 256 (32768)
+I0407 19:11:32.908843  3657 net.cpp:156] Memory required for data: 223008256
+I0407 19:11:32.908854  3657 layer_factory.hpp:77] Creating layer concat_ar
+I0407 19:11:32.908869  3657 net.cpp:91] Creating Layer concat_ar
+I0407 19:11:32.908872  3657 net.cpp:425] concat_ar <- ip2_a
+I0407 19:11:32.908877  3657 net.cpp:425] concat_ar <- ip2_r
+I0407 19:11:32.908882  3657 net.cpp:399] concat_ar -> ip2
+I0407 19:11:33.058903  3657 net.cpp:141] Setting up concat_ar
+I0407 19:11:33.058930  3657 net.cpp:148] Top shape: 128 512 (65536)
+I0407 19:11:33.058934  3657 net.cpp:156] Memory required for data: 223270400
+I0407 19:11:33.058940  3657 layer_factory.hpp:77] Creating layer relu2
+I0407 19:11:33.058959  3657 net.cpp:91] Creating Layer relu2
+I0407 19:11:33.058964  3657 net.cpp:425] relu2 <- ip2
+I0407 19:11:33.058974  3657 net.cpp:386] relu2 -> ip2 (in-place)
+I0407 19:11:33.058984  3657 net.cpp:141] Setting up relu2
+I0407 19:11:33.058989  3657 net.cpp:148] Top shape: 128 512 (65536)
+I0407 19:11:33.058990  3657 net.cpp:156] Memory required for data: 223532544
+I0407 19:11:33.058993  3657 layer_factory.hpp:77] Creating layer dropip2
+I0407 19:11:33.123620  3657 net.cpp:91] Creating Layer dropip2
+I0407 19:11:33.123646  3657 net.cpp:425] dropip2 <- ip2
+I0407 19:11:33.123656  3657 net.cpp:386] dropip2 -> ip2 (in-place)
+I0407 19:11:33.123677  3657 net.cpp:141] Setting up dropip2
+I0407 19:11:33.123684  3657 net.cpp:148] Top shape: 128 512 (65536)
+I0407 19:11:33.123687  3657 net.cpp:156] Memory required for data: 223794688
+I0407 19:11:33.123692  3657 layer_factory.hpp:77] Creating layer ip3
+I0407 19:11:33.123708  3657 net.cpp:91] Creating Layer ip3
+I0407 19:11:33.123713  3657 net.cpp:425] ip3 <- ip2
+I0407 19:11:33.123718  3657 net.cpp:399] ip3 -> ip3
+I0407 19:11:33.123807  3657 net.cpp:141] Setting up ip3
+I0407 19:11:33.123813  3657 net.cpp:148] Top shape: 128 11 (1408)
+I0407 19:11:33.123816  3657 net.cpp:156] Memory required for data: 223800320
+I0407 19:11:33.123826  3657 layer_factory.hpp:77] Creating layer loss
+I0407 19:11:33.123832  3657 net.cpp:91] Creating Layer loss
+I0407 19:11:33.123836  3657 net.cpp:425] loss <- ip3
+I0407 19:11:33.123841  3657 net.cpp:425] loss <- label
+I0407 19:11:33.123849  3657 net.cpp:399] loss -> loss
+I0407 19:11:33.172940  3657 net.cpp:141] Setting up loss
+I0407 19:11:33.172968  3657 net.cpp:148] Top shape: (1)
+I0407 19:11:33.173010  3657 net.cpp:151]     with loss weight 1
+I0407 19:11:33.360637  3657 net.cpp:156] Memory required for data: 223800324
+I0407 19:11:33.360654  3657 net.cpp:217] loss needs backward computation.
+I0407 19:11:33.360671  3657 net.cpp:217] ip3 needs backward computation.
+I0407 19:11:33.360677  3657 net.cpp:217] dropip2 needs backward computation.
+I0407 19:11:33.360682  3657 net.cpp:217] relu2 needs backward computation.
+I0407 19:11:33.360685  3657 net.cpp:217] concat_ar needs backward computation.
+I0407 19:11:33.360692  3657 net.cpp:217] ip2_r needs backward computation.
+I0407 19:11:33.360697  3657 net.cpp:217] relu2_r needs backward computation.
+I0407 19:11:33.360702  3657 net.cpp:217] pool2_r needs backward computation.
+I0407 19:11:33.360708  3657 net.cpp:217] conv2_r needs backward computation.
+I0407 19:11:33.360713  3657 net.cpp:217] relu1_r needs backward computation.
+I0407 19:11:33.360718  3657 net.cpp:217] conv1_r needs backward computation.
+I0407 19:11:33.360723  3657 net.cpp:217] ip2_a needs backward computation.
+I0407 19:11:33.360726  3657 net.cpp:217] relu2_a needs backward computation.
+I0407 19:11:33.360729  3657 net.cpp:217] pool2_a needs backward computation.
+I0407 19:11:33.360733  3657 net.cpp:217] conv2_a needs backward computation.
+I0407 19:11:33.360736  3657 net.cpp:217] relu1_a needs backward computation.
+I0407 19:11:33.360740  3657 net.cpp:217] conv1_a needs backward computation.
+I0407 19:11:33.360744  3657 net.cpp:219] data does not need backward computation.
+I0407 19:11:33.360748  3657 net.cpp:261] This network produces output loss
+I0407 19:11:33.360774  3657 net.cpp:274] Network initialization done.
+I0407 19:11:33.495128  3657 solver.cpp:181] Creating test net (#0) specified by net file: /home/jiang/Documents/BA2016/models/04/local/train_val_local.prototxt
+I0407 19:11:33.495219  3657 net.cpp:313] The NetState phase (1) differed from the phase (0) specified by a rule in layer data
+I0407 19:11:33.503892  3657 net.cpp:49] Initializing net from parameters: 
+name: "SoundNet"
+state {
+  phase: TEST
+}
+layer {
+  name: "data"
+  type: "HDF5Data"
+  top: "amsFeatures"
+  top: "ratemap"
+  top: "label"
+  top: "label_scalar"
+  include {
+    phase: TEST
+  }
+  hdf5_data_param {
+    source: "/home/jiang/Documents/BA2016/models/04/local/twoears_data_test_local.txt"
+    batch_size: 128
+  }
+}
+layer {
+  name: "conv1_a"
+  type: "Convolution"
+  bottom: "amsFeatures"
+  top: "conv1_a"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+    kernel_h: 8
+    kernel_w: 6
+  }
+}
+layer {
+  name: "relu1_a"
+  type: "ReLU"
+  bottom: "conv1_a"
+  top: "conv1_a"
+}
+layer {
+  name: "conv2_a"
+  type: "Convolution"
+  bottom: "conv1_a"
+  top: "conv2_a"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+    kernel_h: 3
+    kernel_w: 3
+  }
+}
+layer {
+  name: "pool2_a"
+  type: "Pooling"
+  bottom: "conv2_a"
+  top: "pool2_a"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "relu2_a"
+  type: "ReLU"
+  bottom: "pool2_a"
+  top: "pool2_a"
+}
+layer {
+  name: "ip2_a"
+  type: "InnerProduct"
+  bottom: "pool2_a"
+  top: "ip2_a"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 256
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "conv1_r"
+  type: "Convolution"
+  bottom: "ratemap"
+  top: "conv1_r"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+    kernel_h: 8
+    kernel_w: 6
+  }
+}
+layer {
+  name: "relu1_r"
+  type: "ReLU"
+  bottom: "conv1_r"
+  top: "conv1_r"
+}
+layer {
+  name: "conv2_r"
+  type: "Convolution"
+  bottom: "conv1_r"
+  top: "conv2_r"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 128
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+    kernel_h: 3
+    kernel_w: 3
+  }
+}
+layer {
+  name: "pool2_r"
+  type: "Pooling"
+  bottom: "conv2_r"
+  top: "pool2_r"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "relu2_r"
+  type: "ReLU"
+  bottom: "pool2_r"
+  top: "pool2_r"
+}
+layer {
+  name: "ip2_r"
+  type: "InnerProduct"
+  bottom: "pool2_r"
+  top: "ip2_r"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 256
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "concat_ar"
+  type: "Concat"
+  bottom: "ip2_a"
+  bottom: "ip2_r"
+  top: "ip2"
+  concat_param {
+    axis: 1
+  }
+}
+layer {
+  name: "relu2"
+  type: "ReLU"
+  bottom: "ip2"
+  top: "ip2"
+}
+layer {
+  name: "dropip2"
+  type: "Dropout"
+  bottom: "ip2"
+  top: "ip2"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layer {
+  name: "ip3"
+  type: "InnerProduct"
+  bottom: "ip2"
+  top: "ip3"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 11
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "accuracy"
+  type: "Accuracy"
+  bottom: "ip3"
+  bottom: "label_scalar"
+  top: "accuracy"
+  include {
+    phase: TEST
+  }
+  loss_param {
+    ignore_label: -1
+  }
+}
+layer {
+  name: "loss"
+  type: "SigmoidCrossEntropyLoss"
+  bottom: "ip3"
+  bottom: "label"
+  top: "loss"
+}
+I0407 19:11:33.504125  3657 layer_factory.hpp:77] Creating layer data
+I0407 19:11:33.504145  3657 net.cpp:91] Creating Layer data
+I0407 19:11:33.504153  3657 net.cpp:399] data -> amsFeatures
+I0407 19:11:33.504169  3657 net.cpp:399] data -> ratemap
+I0407 19:11:33.504180  3657 net.cpp:399] data -> label
+I0407 19:11:33.504190  3657 net.cpp:399] data -> label_scalar
+I0407 19:11:33.547274  3657 hdf5_data_layer.cpp:79] Loading list of HDF5 filenames from: /home/jiang/Documents/BA2016/models/04/local/twoears_data_test_local.txt
+I0407 19:11:33.557446  3657 hdf5_data_layer.cpp:93] Number of HDF5 files: 1
+F0407 19:11:33.647224  3657 syncedmem.hpp:25] Check failed: *ptr host allocation of size 3628800000 failed
