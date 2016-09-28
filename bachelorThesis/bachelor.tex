@@ -1,0 +1,137 @@
+% arara: pdflatex
+% arara: nomencl
+% arara: pdflatex
+\documentclass[12pt,english,german,a4paper,twoside]{report}
+\usepackage{nomencl}
+%packages
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel} 
+\usepackage{tikz}
+\usepackage{subfigure}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{image/}}
+%\usepackage{natbib}
+%\addbibresource{biblio.bib}
+\makeindex
+\makenomenclature
+
+\input{chapter/nomenclature.tex}
+%\printnomenclature
+%opening
+%\title{
+%	{\Huge Deep Neural Networks for Sound Type Classification}\\
+%	{\Large Technical University of Berlin}\\
+%	{\includegraphics[scale=0.3]{tub.pdf}}
+%}}
+%\author{Xiaowei Jiang
+
+\begin{document}
+
+%\maketitle
+\begin{titlepage}
+	
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\centering % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+	\textsc{\LARGE Technische Universit"at Berlin}\\[1.5cm] % Name of your university/college
+	{\includegraphics[scale=0.3]{tub.pdf}}
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Deep Neural Networks for Sound Type Classification}\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\begin{minipage}{0.3\textwidth}
+		\begin{flushleft} \large
+			\emph{Author:}\\
+			Xiaowei \textsc{Jiang} % Your name
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.6\textwidth}
+		\begin{flushright} \large
+			\emph{Supervisor:} \\
+			Prof. Dr. Klaus \textsc{Obermayer}\\
+			Dr. Johannes \textsc{Mohr} % Supervisor's Name
+		\end{flushright}
+	\end{minipage}\\[4cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+	%\Large \emph{Author:}\\
+	%John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\chapter*{Versicherung}
+Hiermit erkl"are ich, dass ich die vorliegende Arbeit selbstst"andig und eingenh"andig sowie ohne unerlaubte fremde Hilfe und ausschlie\ss lich unter Verwendung der aufgef"uhrten Quellen und Hilfsmittel angefertigt habe.
+
+\printnomenclature
+ 
+\chapter*{Zusammenfassung}
+Soundtyp Klassification ist ein Modul vom Two!Ears system. Es gilt als ein multi-label Klassifikationsproblem. Deep neural network(DNN) ist eine L"osung f"ur dieses Klassifikationsproblem. In dieser Bacheloraribeit wird Soundtyp Klassificationsmodels in DNNs aufgebauen. Einige Methode werden angewandt, um das Overfittingsproblem zu kontrollieren.  
+\chapter*{Abstract}
+Sound type classification is a module of  the Two!Ears system. It can be seen as a multi-label classification problem. Deep neural networks(DNNs) provide a solution for this classification problem. In this thesis, sound type classification models of the Two!Ears system will be constructed in DNNs. Also some measures were carried out to conquer the overfitting problem. 
+\chapter*{Acknowledgements}
+I want to thank Dr.Johannes Mohr and Youssef Kashef. They helped me a lot during the research period and the writing of this thesis.
+I want to thank Prof. Klaus Obermayer. I took Machine Intelligent I and II by him. These two courses build the knowledge base of machine learning for me.
+
+\cleardoublepage
+
+\tableofcontents
+
+\cleardoublepage
+
+\input{chapter/chapter1}
+\cleardoublepage
+
+\input{chapter/chapter2}
+\cleardoublepage
+\input{chapter/chapter3}
+\cleardoublepage
+
+\input{chapter/chapter5}
+
+
+\listoffigures
+\listoftables
+
+\input{chapter/appendix.tex}
+
+\nocite{*}
+\bibliography{biblio} 
+\bibliographystyle{ieeetr}
+
+\end{document}

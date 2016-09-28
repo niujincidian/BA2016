@@ -1,0 +1,35 @@
+\select@language {german}
+\contentsline {chapter}{\numberline {1}Background and Motivation}{11}
+\contentsline {section}{\numberline {1.1}Sound Type Classification}{11}
+\contentsline {subsection}{\numberline {1.1.1}NIGENS Database}{12}
+\contentsline {subsection}{\numberline {1.1.2}The Two!Ears System}{12}
+\contentsline {section}{\numberline {1.2}Deep Neural Networks}{15}
+\contentsline {subsection}{\numberline {1.2.1}Motivation}{15}
+\contentsline {subsection}{\numberline {1.2.2}DNN Structures}{16}
+\contentsline {subsection}{\numberline {1.2.3}Caffe Toolbox}{17}
+\contentsline {section}{\numberline {1.3}Aims of Thesis}{19}
+\contentsline {chapter}{\numberline {2}Comparison of Architectures and Loss Functions}{21}
+\contentsline {section}{\numberline {2.1}Methods}{21}
+\contentsline {subsection}{\numberline {2.1.1}Layer Types for Sound Type Classification}{22}
+\contentsline {subsection}{\numberline {2.1.2}Data Layer}{22}
+\contentsline {subsubsection}{Convolutional Layer}{22}
+\contentsline {subsubsection}{Pooling Layer}{22}
+\contentsline {subsubsection}{ReLU Layer}{22}
+\contentsline {subsubsection}{Dropout Layer}{22}
+\contentsline {subsection}{\numberline {2.1.3}Architectures and Loss Functions}{23}
+\contentsline {subsubsection}{One-Against-All Model}{23}
+\contentsline {subsubsection}{SoftmaxWithLoss Model}{24}
+\contentsline {subsubsection}{SigmoidCrossEntropy Model}{26}
+\contentsline {subsection}{\numberline {2.1.4}Implementation Details}{26}
+\contentsline {section}{\numberline {2.2}Results and Discussion}{27}
+\contentsline {subsection}{\numberline {2.2.1}Learning Curve}{27}
+\contentsline {subsection}{\numberline {2.2.2}Comparison of Three Architectures}{29}
+\contentsline {chapter}{\numberline {3}Data Augmentation}{33}
+\contentsline {section}{\numberline {3.1}Overview and Motivation}{33}
+\contentsline {section}{\numberline {3.2}Methods}{34}
+\contentsline {section}{\numberline {3.3}Results and Discussion}{34}
+\contentsline {subsection}{\numberline {3.3.1}Data Augmentation effects}{35}
+\contentsline {subsection}{\numberline {3.3.2}Shifting policies}{35}
+\contentsline {subsection}{\numberline {3.3.3}Shifting Parameters}{36}
+\contentsline {subsection}{\numberline {3.3.4}Summarize and Conclusion}{37}
+\contentsline {chapter}{\numberline {4}Conclusions and Outlook}{41}

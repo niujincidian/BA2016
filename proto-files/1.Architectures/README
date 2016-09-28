@@ -1,0 +1,29 @@
+###############################
+------Archetecture 1:----------
+----SigmoidCrossEntropyLoss----
+###############################
+03: 	SigmoidCrossEntropyLoss
+	SGD(default)
+	with dropout layer
+18:     SigmoidCrossEntropyLoss
+	SGD(default)
+	without dropout
+###############################
+--------Architecture 2:--------
+---------SofmaxWithLoss--------
+###############################
+model_grouptalk_1:
+	(SGD)SoftmaxWithLoss
+	with dropout layer
+16: (SGD)SoftmaxWithLoss
+	without dropout layer
+###############################
+--------Architecture 3:--------
+---------One-Against-All-------
+###############################
+Exp15: (SGD)SoftmaxWithLoss
+	with dropout layer
+Exp17: (SGD)SoftmaxWithLoss
+	without dropout layer
+
+

@@ -1,0 +1,69 @@
+\begin{thebibliography}{10}
+
+\bibitem{mohri2012foundations}
+M.~Mohri, A.~Rostamizadeh, and A.~Talwalkar, {\em Foundations of machine
+  learning}.
+\newblock MIT press, 2012.
+
+\bibitem{twoearsprojectdoc}
+N.~Ma, I.~Trowitzsch, J.~Taghia, C.~Schymura, D.~Kolossa, T.~Walther,
+  H.~Wierstorf, T.~May, and G.~Brown, ``Software architecture two!ears
+  deliverable 3.2,'' tech. rep., Two!Ears Project Group, 2014.
+
+\bibitem{may2014computational}
+T.~May and T.~Dau, ``Computational speech segregation based on an
+  auditory-inspired modulation analysis,'' {\em The Journal of the Acoustical
+  Society of America}, vol.~136, no.~6, pp.~3350--3359, 2014.
+
+\bibitem{zhang2014extracting}
+Y.~Zhang, E.~Chuangsuwanich, and J.~R. Glass, ``Extracting deep neural network
+  bottleneck features using low-rank matrix factorization.,'' in {\em ICASSP},
+  pp.~185--189, 2014.
+
+\bibitem{krizhevsky2012imagenet}
+A.~Krizhevsky, I.~Sutskever, and G.~E. Hinton, ``Imagenet classification with
+  deep convolutional neural networks,'' in {\em Advances in neural information
+  processing systems}, pp.~1097--1105, 2012.
+
+\bibitem{bengio2009learning}
+B.~Yoshua, ``Learning deep architectures for ai,'' {\em Foundations and trends
+  in Machine Learning}, vol.~2, no.~1, pp.~1--127, 2009.
+
+\bibitem{schmidhuber2015deep}
+S.~Jurgen, ``Deep learning in neural networks: An overview,'' {\em Neural
+  Networks}, vol.~61, pp.~85--117, 2015.
+
+\bibitem{deeplrn01}
+D.~.~L. Lab, ``Convolutional neural networks (lenet) – deeplearning 0.1
+  documentation,'' August 2013.
+
+\bibitem{lecun1995convolutional}
+Y.~LeCun and Y.~Bengio, ``Convolutional networks for images, speech, and time
+  series,'' {\em The handbook of brain theory and neural networks}, vol.~3361,
+  no.~10, p.~1995, 1995.
+
+\bibitem{jia2014caffe}
+J.~Yangqing, S.~Evan, D.~Jeff, K.~Sergey, L.~Jonathan, G.~Ross, G.~Sergio, and
+  D.~Trevor, ``Caffe: Convolutional architecture for fast feature embedding,''
+  {\em arXiv preprint arXiv:1408.5093}, 2014.
+
+\bibitem{hinton2012improving}
+G.~E. Hinton, N.~Srivastava, A.~Krizhevsky, I.~Sutskever, and R.~R.
+  Salakhutdinov, ``Improving neural networks by preventing co-adaptation of
+  feature detectors,'' {\em arXiv preprint arXiv:1207.0580}, 2012.
+
+\bibitem{nair2010rectified}
+V.~Nair and G.~E. Hinton, ``Rectified linear units improve restricted boltzmann
+  machines,'' in {\em Proceedings of the 27th International Conference on
+  Machine Learning (ICML-10)}, pp.~807--814, 2010.
+
+\bibitem{srivastava2014dropout}
+N.~Srivastava, G.~E. Hinton, A.~Krizhevsky, I.~Sutskever, and R.~Salakhutdinov,
+  ``Dropout: a simple way to prevent neural networks from overfitting.,'' {\em
+  Journal of Machine Learning Research}, vol.~15, no.~1, pp.~1929--1958, 2014.
+
+\bibitem{vapnik2013nature}
+V.~Vapnik, {\em The nature of statistical learning theory}.
+\newblock Springer Science \& Business Media, 2013.
+
+\end{thebibliography}

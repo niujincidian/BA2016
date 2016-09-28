@@ -1,0 +1,13 @@
+\chapter{Conclusions and Outlook}
+\label{chap:conclusion}
+%summarize the main findings and draw conclusions\\
+%(drp seems doesn't perform good...)\\
+%point out future research directions,limitations,
+%(maybe more drp layers after layers...\\
+%methods to 
+%conquer overfitting, more hidden layers,drp,...)
+In this thesis, I first constructed three DNN architectures and focused on SigmoidCrossEntropy due to its advantage in extension of multi-label classification and its good receiver operating characteristic as shown in Fig.\ref{fig:rocAug} in section \ref{subsec:sftparams}. The application of data augmentation improves the averaged balanced accuracy by $7.1\%$(from $87.2\%$ to $94.3\%$). In conclusion, data augmentation helps in controlling overfitting problem.
+
+As shown in Chapter\ref{chap:dataAug}, the experiment results are sensitive to parameter settings. In future work, finding a optimal parameters setting could be one research direction. 
+
+Besides data augmentation, there are more options to conquer the overfitting problem, such as adding more dropout layers into the network, altering the kernel size for convolutional layers to decrease the amount of weights in the network. Also good parameters tuning would help a lot when optimizing the DNN architecture. However such optimization is computationally very costly. A full learning process of a DNN model goes through the entire data set multiple times. Each alteration of a hyper parameter requires such a lengthy learning process.

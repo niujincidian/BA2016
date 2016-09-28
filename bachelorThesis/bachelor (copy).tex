@@ -1,0 +1,89 @@
+\documentclass[11pt,a4paper]{article}
+
+%packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+%opening
+\title{Deep Neural Networks for Sound Type Classification}
+\author{Xiaowei Jiang}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	Here is Abstract
+\end{abstract}
+
+\tableofcontents
+
+
+\section{Background and Motivation}
+explain structure of this thesis\\
+In Chapter 1...\\
+In Chapter 2...\\
+\subsection{Sound Type Classification}
+goal\\
+usually features are handcrafted
+by domain experts\\
+\subsubsection{NIGENS Database}
+\subsubsection{Two!Ears System}
+idea\\
+representations(amsFeatures,ratemaps)\\
+{Feature extraction}\\
+{Classification}\\
+Lasso methods\\
+\subsection{Deep Neural Networks}
+motivation(DNN can learn features rather than define them->compare to sec.1.2.2)\\
+related applications,\\
+subsections for DNN(components introduction,caffe)
+
+\subsection{Aims of Thesis}
+In my thesis, I investigate different archs and loss functions, data augmentations(overcome overfitting),solver types.\\
+also explain motivation\\
+
+\section{Comparison of Architectures and Loss Functions}
+\subsection{Methods}
+\subsubsection{Architectures and Loss Functions}
+Motivations(why use these different Archs->because of the label representation as 0-1 vector)\\
+One-Against-All
+def.,motivation,result\\
+SoftmaxWithLoss
+def.,motivation,result\\
+SigmoidCrossEntropy
+def.,motivation,result,also the experiment with only 'ratemap' features
+\subsubsection{Implementation Details}
+(Implementations details enable readers to recover the implementation)\\
+discuss about parameters
+\subsection{Results and Discussion}
+Also compare with Lasso results
+\section{Data Augmentation}
+Overview and Motivation\\
+definition of data augmentation\\
+related works(try different parameters)
+\subsection{Methods}
+
+\subsection{Results and Discussion}
+
+\section{Comparison of Optimization Algorithms}
+\subsection{Methods}
+Discuss about different solver types(SGD,Adam,Adadelta,) related works
+"SGD"(Stochastic Gradient Descent)\\
+"AdaGrad"(Adaptive Gradient)\\
+"Adam"(Adaptive Moment Estimation)\\
+"AdaDelta"\\
+"NAG"(Nesterov’s accelerated gradient)\\
+"RMSprop"\\
+\subsection{Results and Discussion}
+
+\section{Conclusions and Outlook}
+summarize the main findings and draw conclusions\\
+(drp seems doesn't perform good...)\\
+point out future research directions,limitations,
+(maybe more drp layers after layers...\\
+methods to concour overfitting, more hidden layers,drp,...)
+
+\appendix
+
+\end{document}

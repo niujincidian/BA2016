@@ -1,0 +1,5 @@
+pdflatex bachelor.tex 
+pdflatex bachelor.tex 
+makeindex -s chapter/nomenclature.ist -t chapter/nomenclature.slg -o chapter/nomenclature.syi chapter/nomenclature.syg
+makeindex -s chapter/glossary.ist -t chapter/glossary.glg -o chapter/glossary.gls chapter/glossary.glo 
+pdflatex bachelor.tex bachelor.pdf

@@ -1,0 +1,22 @@
+21: <SGD>SigmoidCrossEntropy
+ 	with dropout layer
+	shift over time domain
+	T(-30,30)
+-------------------------
+24: SigmoidCrossEntropy:
+	without dropoutlayer
+	T(-30,30)
+	F(-8,8)
+---------------------------
+s0: 	SigmoidCrossEntropy
+	T(-8,8)
+	F(-30,30)
+----------------------------
+s1:	SigmoidCrossEntropy
+	T(-15,15)
+	F(-4,4)
+-----------------------------
+s2:	SigmoidCrossEntropy
+	T(-40,40)
+	F(-8,8)
+------------------------------

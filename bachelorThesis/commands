@@ -1,0 +1,3 @@
+pdflatex bachelor.tex  
+makeindex -s bachelor.ist -t bachelor.slg -o bachelor.syi bachelor.syg
+pdflatex bachelor.tex bachelor.pdf

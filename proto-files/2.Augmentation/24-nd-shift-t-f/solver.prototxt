@@ -1,0 +1,27 @@
+# The train/test network definition
+net: "/mnt/antares_raid/home/cindy/adhara/experiments/24/train_val.prototxt"
+# test_iter specifies how many forward passes the test should carry out (e.g. test batch x test_iter = test set size).
+test_iter: 1065
+# Carry out testing every N training iterations (e.g. train batch x test_interval = train set size).
+test_interval: 3265
+# The base learning rate, momentum and the weight decay of the network.
+base_lr: 1e-4
+# The learning rate policy
+lr_policy: "step"
+gamma: 0.1
+stepsize: 30000
+# high momentum
+momentum: 0.99
+# no gradient accumulation
+weight_decay: 0.0005
+# Display every 100 iterations
+display: 100
+# The maximum number of iterations
+max_iter: 100000
+# snapshot intermediate results
+snapshot: 5000
+snapshot_prefix: "/mnt/raid/dnn/cindy/modelfiles/24/te"
+snapshot_after_train: true
+# solver mode: CPU or GPU
+solver_mode: GPU
+
