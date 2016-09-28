@@ -3,7 +3,15 @@
 ##bachelorThesis:
 latex files for Bachelorarbeit
 
-##protofiles:
+##proto-files:
 caffe .prototxt files for model definition
 
-##ipython
+##ipythonNotebooks:
+ipython scripts for plottings.
+####sensSpec.py:
+sensitivity and specificity calculation for 3 architectures
+
+##pythonLayers(jitterlayer.py)
+python layer definition for data augmentation
+shift over time domain and frequency domain
+
